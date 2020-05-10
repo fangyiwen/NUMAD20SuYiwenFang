@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">NUMAD20Su-YiwenFang</string>
+    <string name="about_string">About</string>
+    <string name="nameEmail_string" />
+    <string name="education_string">Education</string>
+    <string name="resumeTextView_string" />
+</resources>
