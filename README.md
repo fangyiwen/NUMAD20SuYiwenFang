@@ -1,2 +1,0 @@
-# NUMAD20SuYiwenFang
-CS5520 Summer 2020
