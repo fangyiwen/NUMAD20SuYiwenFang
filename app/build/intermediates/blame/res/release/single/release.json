@@ -24,6 +24,10 @@
         "source": "C:\\Cloud\\Dropbox\\Mac-PC\\E\\NEU\\Course\\CS5520-Mobile\\AndroidStudioProjects\\NUMAD20SuYiwenFang\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
+        "merged": "C:\\Cloud\\Dropbox\\Mac-PC\\E\\NEU\\Course\\CS5520-Mobile\\AndroidStudioProjects\\NUMAD20SuYiwenFang\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_display_grid_message.xml.flat",
+        "source": "C:\\Cloud\\Dropbox\\Mac-PC\\E\\NEU\\Course\\CS5520-Mobile\\AndroidStudioProjects\\NUMAD20SuYiwenFang\\app\\src\\main\\res\\layout\\activity_display_grid_message.xml"
+    },
+    {
         "merged": "C:\\Cloud\\Dropbox\\Mac-PC\\E\\NEU\\Course\\CS5520-Mobile\\AndroidStudioProjects\\NUMAD20SuYiwenFang\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_launcher_background.xml.flat",
         "source": "C:\\Cloud\\Dropbox\\Mac-PC\\E\\NEU\\Course\\CS5520-Mobile\\AndroidStudioProjects\\NUMAD20SuYiwenFang\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
     },

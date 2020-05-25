@@ -4,4 +4,11 @@
     <string name="nameEmail_string" />
     <string name="education_string">Education</string>
     <string name="resumeTextView_string" />
+    <string name="grid3x2_string">Grid 3 x 2</string>
+    <string name="a_string">A</string>
+    <string name="b_string">B</string>
+    <string name="c_string">C</string>
+    <string name="d_string">D</string>
+    <string name="e_string">E</string>
+    <string name="f_string">F</string>
 </resources>

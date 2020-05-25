@@ -1,8 +1,8 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="com.myexample.numad20su_yiwenfang"
-4    android:versionCode="1"
-5    android:versionName="1.0" >
+4    android:versionCode="3"
+5    android:versionName="3.0" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="26"
@@ -11,7 +11,7 @@
 9-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml
 10
 11    <application
-11-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:5:5-19:19
+11-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:5:5-24:19
 12        android:allowBackup="true"
 12-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:6:9-35
 13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -29,20 +29,29 @@
 20        android:testOnly="true"
 21        android:theme="@style/AppTheme" >
 21-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:11:9-40
-22        <activity android:name="com.myexample.numad20su_yiwenfang.MainActivity" >
-22-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:12:9-18:20
-22-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:12:19-80
-23            <intent-filter>
-23-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:13:13-17:29
-24                <action android:name="android.intent.action.MAIN" />
-24-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:14:17-69
-24-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:14:25-66
-25
-26                <category android:name="android.intent.category.LAUNCHER" />
-26-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:16:17-77
-26-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:16:27-74
-27            </intent-filter>
-28        </activity>
-29    </application>
+22        <activity
+22-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:12:9-14:99
+23            android:name="com.myexample.numad20su_yiwenfang.DisplayGridMessageActivity"
+23-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:13:13-55
+24            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" />
+24-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:14:13-87
+25        <activity
+25-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:15:9-23:20
+26            android:name="com.myexample.numad20su_yiwenfang.MainActivity"
+26-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:16:13-41
+27            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" >
+27-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:17:13-87
+28            <intent-filter>
+28-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:18:13-22:29
+29                <action android:name="android.intent.action.MAIN" />
+29-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:19:17-69
+29-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:19:25-66
 30
-31</manifest>
+31                <category android:name="android.intent.category.LAUNCHER" />
+31-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:21:17-77
+31-->C:\Cloud\Dropbox\Mac-PC\E\NEU\Course\CS5520-Mobile\AndroidStudioProjects\NUMAD20SuYiwenFang\app\src\main\AndroidManifest.xml:21:27-74
+32            </intent-filter>
+33        </activity>
+34    </application>
+35
+36</manifest>

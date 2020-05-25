@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.myexample.numad20su_yiwenfang"
     android:targetSandboxVersion="2"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="4"
+    android:versionName="4.0" >
 
     <uses-sdk
         android:minSdkVersion="26"
@@ -18,7 +18,12 @@
         android:roundIcon="@mipmap/ic_launcher_yf_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="com.myexample.numad20su_yiwenfang.MainActivity" >
+        <activity
+            android:name="com.myexample.numad20su_yiwenfang.DisplayGridMessageActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" />
+        <activity
+            android:name="com.myexample.numad20su_yiwenfang.MainActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
