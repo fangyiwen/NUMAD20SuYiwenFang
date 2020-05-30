@@ -62,10 +62,10 @@ public class LinkCollectorActivity extends AppCompatActivity {
                 try {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     startActivity(intent);
-                    Toast.makeText(LinkCollectorActivity.this,
+                    Toast.makeText(getApplicationContext(),
                             url, Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
-                    Toast.makeText(LinkCollectorActivity.this,
+                    Toast.makeText(getApplicationContext(),
                             "Invalid URL: " + url, Toast.LENGTH_SHORT).show();
                 }
             }
