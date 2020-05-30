@@ -47,4 +47,9 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void linkCollector(View view) {
+        Intent intent = new Intent(this, LinkCollectorActivity.class);
+        startActivity(intent);
+    }
 }

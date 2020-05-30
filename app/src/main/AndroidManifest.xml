@@ -10,8 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".InputLinkActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden">
+        </activity>
+        <activity
+            android:name=".LinkCollectorActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:label="@string/title_activity_link_collector"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".DisplayGridMessageActivity"
-            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"></activity>
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" />
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden">
