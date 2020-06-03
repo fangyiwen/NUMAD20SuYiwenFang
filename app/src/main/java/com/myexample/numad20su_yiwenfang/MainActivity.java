@@ -52,4 +52,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LinkCollectorActivity.class);
         startActivity(intent);
     }
+
+    public void displayLocation(View view) {
+        Intent intent = new Intent(this, DisplayLocationActivity.class);
+        startActivity(intent);
+    }
 }

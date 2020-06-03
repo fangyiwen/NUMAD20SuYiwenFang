@@ -24,4 +24,10 @@
     <string name="enter_string">Enter</string>
     <string name="link_name_string">Name</string>
     <string name="link_url_string">URL</string>
+    <string name="locator_string">Locator</string>
+    <string name="latitude_string">Latitude:&#160;</string>
+    <string name="longitude_string">Longitude:&#160;</string>
+    <string name="display_location_string">Display Location</string>
+    <string name="latitude_n_a_string">N / A</string>
+    <string name="longitude_n_a_string">N / A</string>
 </resources>

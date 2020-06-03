@@ -73,16 +73,16 @@ public class LinkCollectorActivity extends AppCompatActivity {
     }
 
     // Show a new screen for the user to enter a name and a URL for the link
-    private static final int request_code = 5;
+    private static final int REQUEST_CODE = 5;
 
     private void addListItem() {
         Intent intent = new Intent(this, InputLinkActivity.class);
-        startActivityForResult(intent, request_code);
+        startActivityForResult(intent, REQUEST_CODE);
     }
 
     // Obtain and extract the returned data from the next activity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if ((requestCode == request_code) &&
+        if ((requestCode == REQUEST_CODE) &&
                 (resultCode == RESULT_OK)) {
             listItems.add(data.getExtras().getString("returnName"));
             listItemsUrl.add(data.getExtras().getString("returnUrl"));
