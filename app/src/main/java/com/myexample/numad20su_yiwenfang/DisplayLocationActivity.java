@@ -25,9 +25,17 @@ public class DisplayLocationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_location);
+        // Try to show location when it onCreates
+        displayLocation();
     }
 
-    public void displayLocation(View view) {
+    // The Button "Try Again!" is initially invisible
+    // and only visible to click if permission denied or no location providers
+    public void displayLocationButton(View view) {
+        displayLocation();
+    }
+
+    public void displayLocation() {
         // Check permission for GPS location, network location, and network access
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
@@ -63,6 +71,8 @@ public class DisplayLocationActivity extends AppCompatActivity {
                 } else {
                     // Permission denied
                     Toast.makeText(this, "Permission denied!", Toast.LENGTH_SHORT).show();
+                    // The Button "Try Again!" is set to be visible
+                    findViewById(R.id.button12).setVisibility(View.VISIBLE);
                 }
                 return;
             }
@@ -87,6 +97,8 @@ public class DisplayLocationActivity extends AppCompatActivity {
             Intent intent = new Intent();
             intent.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
             startActivity(intent);
+            // The Button "Try Again!" is set to be visible
+            findViewById(R.id.button12).setVisibility(View.VISIBLE);
             return;
         }
 
@@ -99,6 +111,8 @@ public class DisplayLocationActivity extends AppCompatActivity {
             myLocationManager.requestLocationUpdates(currentProvider,
                     0, 0, myListener);
         }
+        // Location is successfully obtained. The Button "Try Again!" is then reset to be invisible
+        findViewById(R.id.button12).setVisibility(View.INVISIBLE);
     }
 
     // Display the latitude and longitude values in the TextViews

@@ -58,9 +58,10 @@
                 android:id="@+id/button12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="displayLocation"
+                android:onClick="displayLocationButton"
                 android:text="@string/display_location_string"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:visibility="invisible" />
         </TableRow>
 
     </TableLayout>
