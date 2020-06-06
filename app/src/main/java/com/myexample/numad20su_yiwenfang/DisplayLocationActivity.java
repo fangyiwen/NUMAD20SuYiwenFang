@@ -86,10 +86,10 @@ public class DisplayLocationActivity extends AppCompatActivity {
         List<String> myProviders = myLocationManager.getProviders(true);
 
         // Choose appropriate location providers, the preference can be changed if necessary
-        if (myProviders.contains(LocationManager.NETWORK_PROVIDER)) {
-            currentProvider = LocationManager.NETWORK_PROVIDER;
-        } else if (myProviders.contains(LocationManager.GPS_PROVIDER)) {
+        if (myProviders.contains(LocationManager.GPS_PROVIDER)) {
             currentProvider = LocationManager.GPS_PROVIDER;
+        } else if (myProviders.contains(LocationManager.NETWORK_PROVIDER)) {
+            currentProvider = LocationManager.NETWORK_PROVIDER;
         } else {
             // Enable location providers in the Android Setting if no location providers found
             Toast.makeText(this, "No location providers! " +
@@ -103,13 +103,11 @@ public class DisplayLocationActivity extends AppCompatActivity {
         }
 
         Location myLocation = myLocationManager.getLastKnownLocation(currentProvider);
+        // Automatically updates the current location
+        myLocationManager.requestLocationUpdates(currentProvider,
+                0, 0, myListener);
         if (myLocation != null) {
-            // Not the first time to run
             display(myLocation);
-        } else {
-            // First time to run
-            myLocationManager.requestLocationUpdates(currentProvider,
-                    0, 0, myListener);
         }
         // Location is successfully obtained. The Button "Try Again!" is then reset to be invisible
         findViewById(R.id.button12).setVisibility(View.INVISIBLE);
