@@ -30,4 +30,9 @@
     <string name="display_location_string">Try Again!</string>
     <string name="latitude_n_a_string">N / A</string>
     <string name="longitude_n_a_string">N / A</string>
+    <string name="at_your_service_string">At Your Service</string>
+    <string name="textView9_string">Retrieve location info from a US post code</string>
+    <string name="editText3_hint">US Post Code</string>
+    <string name="button14_string">Send</string>
+    <string name="textView10_string">Web Service Connection Status: Disconnected</string>
 </resources>

@@ -57,4 +57,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DisplayLocationActivity.class);
         startActivity(intent);
     }
+
+    public void atYourService(View view) {
+        Intent intent = new Intent(this, AtYourServiceActivity.class);
+        startActivity(intent);
+    }
 }
