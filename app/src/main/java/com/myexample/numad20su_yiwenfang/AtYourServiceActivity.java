@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -24,6 +25,8 @@ public class AtYourServiceActivity extends AppCompatActivity {
     private TextView textView10, textView11;
     private ApiTask myTask;
     private String inputPostCode;
+    private EditText postCodeEditText;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,8 @@ public class AtYourServiceActivity extends AppCompatActivity {
 
         textView10 = findViewById(R.id.textView10);
         textView11 = findViewById(R.id.textView11);
+        postCodeEditText = findViewById(R.id.editText3);
+        progressBar = findViewById(R.id.progressBar);
     }
 
     @Override
@@ -44,7 +49,6 @@ public class AtYourServiceActivity extends AppCompatActivity {
     }
 
     public void send(View view) {
-        EditText postCodeEditText = findViewById(R.id.editText3);
         String postCode = postCodeEditText.getText().toString();
         // Check empty input
         if (postCode.equals("")) {
@@ -68,12 +72,16 @@ public class AtYourServiceActivity extends AppCompatActivity {
 
     public void testApi(View view) {
         // Use API predefined post code "90210" to check the API service works well
-        EditText postCodeEditText = findViewById(R.id.editText3);
         postCodeEditText.setText("90210");
         findViewById(R.id.button14).performClick();
     }
 
     private class ApiTask extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute() {
+            progressBar.setVisibility(View.VISIBLE);
+        }
 
         @Override
         protected String doInBackground(String... params) {
@@ -84,12 +92,12 @@ public class AtYourServiceActivity extends AppCompatActivity {
 
             String result;
             try {
-                // Update web service connection status
-                publishProgress("Web Service Connection Status: Start connection");
+                // Update web service connection status and Set current value for ProgressBar
+                publishProgress("Web Service Connection Status: Start connection", "0");
 
                 URL url = new URL(params[0]);
                 publishProgress(
-                        "Web Service Connection Status: Connecting... (URL is OK)");
+                        "Web Service Connection Status: Connecting... (URL is OK)", "25");
 
                 // Start HttpURLConnection
                 HttpURLConnection connect = (HttpURLConnection) url.openConnection();
@@ -100,18 +108,22 @@ public class AtYourServiceActivity extends AppCompatActivity {
                 try {
                     connect.connect();
                 } catch (IOException e) {
-                    publishProgress("Web Service Connection Status: Disconnected");
+                    // Give value "catch" for any Exception
+                    publishProgress("Web Service Connection Status: Disconnected",
+                            "catch");
                     result = "\n\nError: IOException (Can't connect to the API server)";
                     return result;
                 }
-                publishProgress("Web Service Connection Status: Connection is successful");
+                publishProgress("Web Service Connection Status: Connection is successful",
+                        "50");
 
                 InputStream inputStream;
                 // Check InputStream is successful for the post code request
                 try {
                     inputStream = connect.getInputStream();
                 } catch (IOException e) {
-                    publishProgress("Web Service Connection Status: Disconnected");
+                    publishProgress("Web Service Connection Status: Disconnected",
+                            "catch");
                     result = "\n\nError: IOException " +
                             "(API provides no information for this post code)";
                     return result;
@@ -121,7 +133,7 @@ public class AtYourServiceActivity extends AppCompatActivity {
                 Scanner myScanner = new Scanner(inputStream).useDelimiter("\\A");
                 String response = myScanner.hasNext() ? myScanner.next() : "";
                 publishProgress("Web Service Connection Status: Disconnected " +
-                        "(Data is retrieved from API)");
+                        "(Data is retrieved from API)", "75");
 
                 // Deal with JSON response format
                 JSONObject myJsonObject = new JSONObject(response);
@@ -146,24 +158,24 @@ public class AtYourServiceActivity extends AppCompatActivity {
                         + "Geo Coordinates:\n"
                         + "Latitude: " + latitude + "\n"
                         + "Longitude: " + longitude;
-                publishProgress("Web Service Connection Status: Disconnected");
+                publishProgress("Web Service Connection Status: Disconnected", "100");
                 return result;
             } catch (MalformedURLException e) {
-                publishProgress("Web Service Connection Status: Disconnected");
+                publishProgress("Web Service Connection Status: Disconnected", "catch");
                 result = "\n\nError: MalformedURLException (A malformed URL has occurred. " +
                         "Either no legal protocol could be found the URL could not be parsed)";
                 return result;
             } catch (ProtocolException e) {
-                publishProgress("Web Service Connection Status: Disconnected");
+                publishProgress("Web Service Connection Status: Disconnected", "catch");
                 result = "\n\nError: ProtocolException " +
                         "(There is an error in the underlying protocol)";
                 return result;
             } catch (IOException e) {
-                publishProgress("Web Service Connection Status: Disconnected");
+                publishProgress("Web Service Connection Status: Disconnected", "catch");
                 result = "\n\nError: IOException (An I/O exception of some sort has occurred)";
                 return result;
             } catch (JSONException e) {
-                publishProgress("Web Service Connection Status: Disconnected");
+                publishProgress("Web Service Connection Status: Disconnected", "catch");
                 result = "\n\nError: JSONException (A problem with the JSON API has occurred)";
                 return result;
             }
@@ -177,6 +189,10 @@ public class AtYourServiceActivity extends AppCompatActivity {
             }
             // Update and show web service connection status
             textView10.setText(values[0]);
+            // Update ProgressBar value if no Exception has occurred
+            if (!values[1].equals("catch")) {
+                progressBar.setProgress(Integer.parseInt(values[1]));
+            }
         }
 
         @Override
@@ -186,6 +202,9 @@ public class AtYourServiceActivity extends AppCompatActivity {
             // Enable "Send" and "Test API" after the retrieved process is finished
             findViewById(R.id.button14).setEnabled(true);
             findViewById(R.id.button17).setEnabled(true);
+            // Reset ProgressBar to be invisible and value to be 0
+            progressBar.setVisibility(View.INVISIBLE);
+            progressBar.setProgress(0);
         }
     }
 }
