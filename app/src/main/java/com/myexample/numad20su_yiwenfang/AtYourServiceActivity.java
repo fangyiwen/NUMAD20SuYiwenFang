@@ -49,7 +49,9 @@ public class AtYourServiceActivity extends AppCompatActivity {
     }
 
     public void send(View view) {
-        String postCode = postCodeEditText.getText().toString();
+        String postCode = postCodeEditText.getText().toString().trim();
+        // Reset input EditText as empty after button click
+        postCodeEditText.setText("");
         // Check empty input
         if (postCode.equals("")) {
             textView11.setText("\nError: Post code can't be empty!");
@@ -61,8 +63,6 @@ public class AtYourServiceActivity extends AppCompatActivity {
 
         inputPostCode = "\nInput post code: " + postCode;
         textView11.setText(inputPostCode + "\n\n(Pending...)");
-        // Reset input EditText as empty after button click
-        postCodeEditText.setText("");
         // The post code looking up API is provided by Zippopotam.us
         String url = "https://api.zippopotam.us/us/" + postCode;
         // Start AsyncTask
