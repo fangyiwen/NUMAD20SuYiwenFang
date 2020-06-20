@@ -51,8 +51,10 @@ public class AtYourServiceActivity extends AppCompatActivity {
             textView11.setText("\nError: Post code can't be empty!");
             return;
         }
-        // Disable "Send" button before the retrieved process is finished
+        // Disable "Send" and "Test API" before the retrieved process is finished
         findViewById(R.id.button14).setEnabled(false);
+        findViewById(R.id.button17).setEnabled(false);
+
         inputPostCode = "\nInput post code: " + postCode;
         textView11.setText(inputPostCode + "\n\n(Pending...)");
         // Reset input EditText as empty after button click
@@ -62,6 +64,13 @@ public class AtYourServiceActivity extends AppCompatActivity {
         // Start AsyncTask
         myTask = new ApiTask();
         myTask.execute(url);
+    }
+
+    public void testApi(View view) {
+        // Use API predefined post code "90210" to check the API service works well
+        EditText postCodeEditText = findViewById(R.id.editText3);
+        postCodeEditText.setText("90210");
+        findViewById(R.id.button14).performClick();
     }
 
     private class ApiTask extends AsyncTask<String, String, String> {
@@ -174,8 +183,9 @@ public class AtYourServiceActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             // Display the text returned by the doInBackground() method
             textView11.setText(inputPostCode + result);
-            // Enable "Send" button after the retrieved process is finished
+            // Enable "Send" and "Test API" after the retrieved process is finished
             findViewById(R.id.button14).setEnabled(true);
+            findViewById(R.id.button17).setEnabled(true);
         }
     }
 }

@@ -35,4 +35,6 @@
     <string name="editText3_hint">US Post Code</string>
     <string name="button14_string">Send</string>
     <string name="textView10_string">Web Service Connection Status: Disconnected</string>
+    <string name="test_api_string">Test API</string>
+    <string name="textview13_string">Hint: Click \"Test API\" to test a predefined post code \"90210\" in the API. You should see the full retrieved info if the API service is OK.</string>
 </resources>
