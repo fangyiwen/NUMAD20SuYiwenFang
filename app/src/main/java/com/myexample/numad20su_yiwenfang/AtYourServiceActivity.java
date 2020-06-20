@@ -23,7 +23,7 @@ public class AtYourServiceActivity extends AppCompatActivity {
 
     private TextView textView10, textView11;
     private ApiTask myTask;
-    private String pending = "(Pending...)", inputPostCode;
+    private String inputPostCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +46,22 @@ public class AtYourServiceActivity extends AppCompatActivity {
     public void send(View view) {
         EditText postCodeEditText = findViewById(R.id.editText3);
         String postCode = postCodeEditText.getText().toString();
+        // Check empty input
+        if (postCode.equals("")) {
+            textView11.setText("\nError: Post code can't be empty!");
+            return;
+        }
+        // Disable "Send" button before the retrieved process is finished
+        findViewById(R.id.button14).setEnabled(false);
         inputPostCode = "\nInput post code: " + postCode;
-        textView11.setText(inputPostCode + "\n\n" + pending);
+        textView11.setText(inputPostCode + "\n\n(Pending...)");
+        // Reset input EditText as empty after button click
+        postCodeEditText.setText("");
         // The post code looking up API is provided by Zippopotam.us
         String url = "https://api.zippopotam.us/us/" + postCode;
         // Start AsyncTask
         myTask = new ApiTask();
-        myTask.execute(url, postCode);
+        myTask.execute(url);
     }
 
     private class ApiTask extends AsyncTask<String, String, String> {
@@ -70,7 +79,8 @@ public class AtYourServiceActivity extends AppCompatActivity {
                 publishProgress("Web Service Connection Status: Start connection");
 
                 URL url = new URL(params[0]);
-                publishProgress("Web Service Connection Status: Connecting... (URL is OK)");
+                publishProgress(
+                        "Web Service Connection Status: Connecting... (URL is OK)");
 
                 // Start HttpURLConnection
                 HttpURLConnection connect = (HttpURLConnection) url.openConnection();
@@ -82,7 +92,7 @@ public class AtYourServiceActivity extends AppCompatActivity {
                     connect.connect();
                 } catch (IOException e) {
                     publishProgress("Web Service Connection Status: Disconnected");
-                    result = "\n\nError: IOException (API service is not available)";
+                    result = "\n\nError: IOException (Can't connect to the API server)";
                     return result;
                 }
                 publishProgress("Web Service Connection Status: Connection is successful");
@@ -93,14 +103,16 @@ public class AtYourServiceActivity extends AppCompatActivity {
                     inputStream = connect.getInputStream();
                 } catch (IOException e) {
                     publishProgress("Web Service Connection Status: Disconnected");
-                    result = "\n\nError: IOException (No information for the post code)";
+                    result = "\n\nError: IOException " +
+                            "(API provides no information for this post code)";
                     return result;
                 }
 
                 // Deal with response
                 Scanner myScanner = new Scanner(inputStream).useDelimiter("\\A");
                 String response = myScanner.hasNext() ? myScanner.next() : "";
-                publishProgress("Web Service Connection Status: Disconnected (Data is retrieved from API)");
+                publishProgress("Web Service Connection Status: Disconnected " +
+                        "(Data is retrieved from API)");
 
                 // Deal with JSON response format
                 JSONObject myJsonObject = new JSONObject(response);
@@ -108,7 +120,8 @@ public class AtYourServiceActivity extends AppCompatActivity {
                 String country = myJsonObject.getString("country");
                 String countryAbbreviation = myJsonObject.getString("country abbreviation");
 
-                JSONObject places = myJsonObject.getJSONArray("places").getJSONObject(0);
+                JSONObject places =
+                        myJsonObject.getJSONArray("places").getJSONObject(0);
                 String placeName = places.getString("place name");
                 String longitude = places.getString("longitude");
                 String state = places.getString("state");
@@ -128,19 +141,21 @@ public class AtYourServiceActivity extends AppCompatActivity {
                 return result;
             } catch (MalformedURLException e) {
                 publishProgress("Web Service Connection Status: Disconnected");
-                result = "\n\nError: MalformedURLException";
+                result = "\n\nError: MalformedURLException (A malformed URL has occurred. " +
+                        "Either no legal protocol could be found the URL could not be parsed)";
                 return result;
             } catch (ProtocolException e) {
                 publishProgress("Web Service Connection Status: Disconnected");
-                result = "\n\nError: ProtocolException";
+                result = "\n\nError: ProtocolException " +
+                        "(There is an error in the underlying protocol)";
                 return result;
             } catch (IOException e) {
                 publishProgress("Web Service Connection Status: Disconnected");
-                result = "\n\nError: IOException";
+                result = "\n\nError: IOException (An I/O exception of some sort has occurred)";
                 return result;
             } catch (JSONException e) {
                 publishProgress("Web Service Connection Status: Disconnected");
-                result = "\n\nError: JSONException";
+                result = "\n\nError: JSONException (A problem with the JSON API has occurred)";
                 return result;
             }
         }
@@ -159,6 +174,8 @@ public class AtYourServiceActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             // Display the text returned by the doInBackground() method
             textView11.setText(inputPostCode + result);
+            // Enable "Send" button after the retrieved process is finished
+            findViewById(R.id.button14).setEnabled(true);
         }
     }
 }

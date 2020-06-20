@@ -77,7 +77,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="displayLocation"
-                android:text="@string/locator_string" />
+                android:text="@string/locator_string"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/button13"
