@@ -34,6 +34,15 @@ public class AtYourServiceActivity extends AppCompatActivity {
         textView11 = findViewById(R.id.textView11);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Cancel AsyncTask in the onDestroy() method to avoid memory leak
+        if (myTask != null && myTask.getStatus() == AsyncTask.Status.RUNNING) {
+            myTask.cancel(true);
+        }
+    }
+
     public void send(View view) {
         EditText postCodeEditText = findViewById(R.id.editText3);
         String postCode = postCodeEditText.getText().toString();
@@ -50,6 +59,11 @@ public class AtYourServiceActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
+            // Check if cancelled
+            if (isCancelled()) {
+                return null;
+            }
+
             String result;
             try {
                 // Update web service connection status
@@ -133,6 +147,10 @@ public class AtYourServiceActivity extends AppCompatActivity {
 
         @Override
         protected void onProgressUpdate(String... values) {
+            // Check if cancelled
+            if (isCancelled()) {
+                return;
+            }
             // Update and show web service connection status
             textView10.setText(values[0]);
         }
